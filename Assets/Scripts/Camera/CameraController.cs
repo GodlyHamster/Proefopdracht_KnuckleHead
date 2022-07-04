@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private float mouseSensitivity = 160;
+    [SerializeField] private float mouseSensitivity = 80;
     [SerializeField] private InputActionAsset cameraControls;
 
     private void Awake()

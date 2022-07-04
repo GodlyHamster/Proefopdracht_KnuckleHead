@@ -1,12 +1,14 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour, IEquipable
 {
     [SerializeField] private InputActionAsset playerInput;
+    [SerializeField] private GameObject shootAnchor;
+    [SerializeField] private GameObject bulletPrefab;
     
     private bool _itemIsEquipped = false;
+    [SerializeField] private float fireForce;
     [SerializeField] private float fireCooldown = 1f;
     [SerializeField] private int magazineMax = 8;
     private int _ammo;
@@ -59,7 +61,9 @@ public class Gun : MonoBehaviour, IEquipable
     public void Shoot()
     {
         _ammo -= 1;
-        Debug.Log("You have " + _ammo + " ammo left");
+        GameObject bullet = Instantiate(bulletPrefab, shootAnchor.transform.position, transform.rotation);
+        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+        bulletRb.velocity = transform.forward * fireForce;
     }
 
     public int Reload(int ammo)
