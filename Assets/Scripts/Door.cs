@@ -17,7 +17,7 @@ public class Door : MonoBehaviour, IInteractable
     
     public void Interact()
     {
-        Debug.Log("Inter");
+        _isActive = !_isActive;
         SetDoorState(!_isActive);
         OnLeverStateChange(!_isActive, _isActive);
     }
